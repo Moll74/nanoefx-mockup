@@ -178,6 +178,21 @@
   .drop::before{content:"";position:absolute;top:-12px;left:0;right:0;height:12px}
   .nav-item:hover .drop,.nav-item:focus-within .drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(6px)}
   .drop a{color:var(--t-light-mut);font-size:14px;font-weight:600;padding:9px 12px;border-radius:8px;white-space:nowrap}
+  .drop.mega{left:0;transform:translateY(8px);min-width:0;width:min(720px,90vw);padding:16px;gap:0;display:block}
+  .nav-item:hover .drop.mega,.nav-item:focus-within .drop.mega{transform:translateY(6px)}
+  .mega-hub{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:0 6px 12px;border-bottom:1px solid var(--ink-3);margin-bottom:12px}
+  .mega-hub .mh-path{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13.5px;font-weight:700;color:var(--green-2);letter-spacing:.01em}
+  .mega-hub .mh-note{font-size:12px;color:var(--t-light-mut)}
+  .mega-cols{display:grid;grid-template-columns:1.15fr 1fr;gap:22px}
+  .mega-group .mega-head{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--t-light-mut);padding:0 8px 9px;display:flex;align-items:center;gap:8px}
+  .mega-group .mega-head code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:10.5px;font-weight:600;color:var(--green-2);text-transform:none;letter-spacing:0;background:rgba(137,195,69,.12);padding:2px 7px;border-radius:6px}
+  .mega-list{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+  .mega-list a{display:flex;flex-direction:column;gap:1px;padding:7px 9px;border-radius:8px;text-decoration:none;white-space:normal}
+  .mega-list a:hover{background:rgba(137,195,69,.14)}
+  .mega-list .mi-name{font-size:13px;font-weight:600;color:#fff;line-height:1.2}
+  .mega-list .mi-url{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:10.5px;color:var(--t-light-mut)}
+  .mega-list a:hover .mi-url{color:var(--green-2)}
+  @media(max-width:1180px){.drop.mega{width:min(640px,92vw)}.mega-cols{gap:16px}}
   .drop a:hover{background:rgba(137,195,69,.16);color:#fff}
 
   /* application category cards */
@@ -478,17 +493,18 @@
       <a href="#tech">How it works</a>
       <div class="nav-item has-drop">
         <a href="#applications">Where it works</a>
-        <div class="drop">
-          <a href="#app-road">Road transport</a>
-          <a href="#app-marine">Marine</a>
-          <a href="#app-power">Power generation</a>
-          <a href="#app-construction">Construction &amp; heavy equipment</a>
-          <a href="#app-agri">Agriculture</a>
-          <a href="#app-mining">Mining &amp; quarrying</a>
-          <a href="#app-rail">Rail</a>
-          <a href="#app-port">Port, airport &amp; logistics</a>
-          <a href="#app-public">Military, emergency &amp; public sector</a>
-          <a href="#app-small">Small engines &amp; specialty</a>
+        <div class="drop mega">
+          <div class="mega-hub"><span class="mh-path">/where-it-works</span><span class="mh-note">Where NanoEFX works — by sector &amp; by engine / fuel type</span></div>
+          <div class="mega-cols">
+            <div class="mega-group">
+              <div class="mega-head">Sectors</div>
+              <div class="mega-list"><a href="#app-road"><span class="mi-name">Road transport</span><span class="mi-url">/road-transport</span></a><a href="#app-marine"><span class="mi-name">Marine</span><span class="mi-url">/marine</span></a><a href="#app-power"><span class="mi-name">Power generation</span><span class="mi-url">/power-generation</span></a><a href="#app-construction"><span class="mi-name">Construction &amp; heavy equipment</span><span class="mi-url">/construction-heavy-equipment</span></a><a href="#app-agri"><span class="mi-name">Agriculture</span><span class="mi-url">/agriculture</span></a><a href="#app-mining"><span class="mi-name">Mining &amp; quarrying</span><span class="mi-url">/mining-quarrying</span></a><a href="#app-rail"><span class="mi-name">Rail</span><span class="mi-url">/rail</span></a><a href="#app-port"><span class="mi-name">Port, airport &amp; logistics</span><span class="mi-url">/port-airport-logistics</span></a><a href="#app-public"><span class="mi-name">Military, emergency &amp; public sector</span><span class="mi-url">/military-emergency-public-sector</span></a><a href="#app-small"><span class="mi-name">Small engines &amp; specialty</span><span class="mi-url">/small-engines-specialty</span></a></div>
+            </div>
+            <div class="mega-group">
+              <div class="mega-head">Engine &amp; fuel types <code>/engine-fuel-types</code></div>
+              <div class="mega-list two"><a href="#engine-fuel-types"><span class="mi-name">Diesel</span><span class="mi-url">/diesel</span></a><a href="#engine-fuel-types"><span class="mi-name">Petrol / gasoline</span><span class="mi-url">/petrol-gasoline</span></a><a href="#engine-fuel-types"><span class="mi-name">LPG</span><span class="mi-url">/lpg</span></a><a href="#engine-fuel-types"><span class="mi-name">CNG / LNG</span><span class="mi-url">/cng-lng</span></a><a href="#engine-fuel-types"><span class="mi-name">Biogas</span><span class="mi-url">/biogas</span></a><a href="#engine-fuel-types"><span class="mi-name">Biodiesel</span><span class="mi-url">/biodiesel</span></a><a href="#engine-fuel-types"><span class="mi-name">Hybrid ICE</span><span class="mi-url">/hybrid-ice</span></a><a href="#engine-fuel-types"><span class="mi-name">2-stroke</span><span class="mi-url">/2-stroke</span></a><a href="#engine-fuel-types"><span class="mi-name">4-stroke</span><span class="mi-url">/4-stroke</span></a><a href="#engine-fuel-types"><span class="mi-name">Turbocharged</span><span class="mi-url">/turbocharged</span></a><a href="#engine-fuel-types"><span class="mi-name">Naturally aspirated</span><span class="mi-url">/naturally-aspirated</span></a></div>
+            </div>
+          </div>
         </div>
       </div>
       <a href="#results">Results</a>
@@ -780,7 +796,7 @@
         <p>ATVs / UTVs, portable gensets, pumps and small petrol engines.</p></div>
       </div>
     </div>
-    <div class="fuel-strip">
+    <div class="fuel-strip" id="engine-fuel-types">
       <h3>Works across engine &amp; fuel types</h3>
       <p>Wherever there is suitable intake filtration — paper, PET, felt, washable or acoustic media that can be treated.</p>
       <div class="fuel-tags"><span>Diesel</span><span>Petrol / gasoline</span><span>LPG</span><span>CNG / LNG</span><span>Biogas</span><span>Biodiesel</span><span>Hybrid ICE</span><span>2-stroke</span><span>4-stroke</span><span>Turbocharged</span><span>Naturally aspirated</span></div>
