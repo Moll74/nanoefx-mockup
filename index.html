@@ -83,7 +83,7 @@
   .logo{display:flex;align-items:center;height:34px;color:#fff;flex:0 0 auto}
   .logo svg{height:100%;width:auto}
   .logo img,.logo-img{height:100%;width:auto;display:block}
-  .nav-links{display:flex;gap:15px;margin-left:8px}
+  .nav-links{display:flex;gap:13px;margin-left:8px}
   .nav-links a{color:var(--t-light-mut);font-size:15px;font-weight:600;white-space:nowrap;transition:color .15s}
   .nav-links a:hover{color:#fff}
   .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px}
@@ -100,7 +100,7 @@
   .lang-menu a:hover{background:rgba(137,195,69,.16);color:#fff}
   .lang-menu a.active{color:#fff;background:rgba(137,195,69,.10)}
   .nav-toggle{display:none;background:none;border:0;color:#fff;cursor:pointer}
-  @media(max-width:1360px){
+  @media(max-width:1430px){
     .nav-links,.nav-right .lang-drop,.nav-right .btn{display:none}
     .nav-toggle{display:inline-flex}
   }
@@ -174,7 +174,8 @@
 
   /* nav dropdown */
   .nav-item{position:relative;display:flex;align-items:center}
-  .has-drop>a::after{content:"▾";font-size:9px;margin-left:2px;opacity:.7}
+  .nav-links>a::after,.nav-links>.nav-item>a::after{content:"\25BE";font-size:11px;margin-left:4px;opacity:1;position:relative;top:-1px;display:inline-block}
+  .nav-links>a:hover::after,.nav-links>.nav-item:hover>a::after{opacity:1;color:var(--green-2)}
   .drop{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);
     background:#00323d;border:1px solid var(--ink-3);border-radius:12px;padding:8px;min-width:250px;
     display:grid;gap:2px;opacity:0;visibility:hidden;transition:opacity .15s,transform .15s,visibility .15s;
