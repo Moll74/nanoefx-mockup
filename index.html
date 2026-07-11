@@ -82,7 +82,7 @@
   .logo{display:flex;align-items:center;height:34px;color:#fff;flex:0 0 auto}
   .logo svg{height:100%;width:auto}
   .logo img,.logo-img{height:100%;width:auto;display:block}
-  .nav-links{display:flex;gap:24px;margin-left:12px}
+  .nav-links{display:flex;gap:18px;margin-left:10px}
   .nav-links a{color:var(--t-light-mut);font-size:14px;font-weight:600;white-space:nowrap;transition:color .15s}
   .nav-links a:hover{color:#fff}
   .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px}
@@ -99,7 +99,7 @@
   .lang-menu a:hover{background:rgba(137,195,69,.16);color:#fff}
   .lang-menu a.active{color:#fff;background:rgba(137,195,69,.10)}
   .nav-toggle{display:none;background:none;border:0;color:#fff;cursor:pointer}
-  @media(max-width:1135px){
+  @media(max-width:1240px){
     .nav-links,.nav-right .lang-drop,.nav-right .btn{display:none}
     .nav-toggle{display:inline-flex}
   }
@@ -478,6 +478,13 @@
     body{padding-bottom:72px}
   }
   .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .faq-list{display:grid;gap:12px;max-width:840px}
+  .faq-list details{background:var(--white);border:1px solid var(--line-l);border-radius:12px;padding:0 20px;box-shadow:var(--shadow)}
+  .faq-list summary{cursor:pointer;list-style:none;padding:18px 0;font-size:16.5px;font-weight:700;color:var(--t-dark);display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .faq-list summary::-webkit-details-marker{display:none}
+  .faq-list summary::after{content:"+";font-size:24px;font-weight:400;line-height:1;color:var(--green-deep);flex:0 0 auto;transition:transform .2s}
+  .faq-list details[open] summary::after{transform:rotate(45deg)}
+  .faq-list .faq-a{padding:0 0 18px;color:var(--t-dark-mut);font-size:15px;line-height:1.62;max-width:72ch}
 </style>
 </head>
 <body>
@@ -491,6 +498,7 @@
     <nav class="nav-links">
       <a href="#how">Product</a>
       <a href="#tech">How it works</a>
+      <a href="#results">Results</a>
       <div class="nav-item has-drop">
         <a href="#applications">Where it works</a>
         <div class="drop mega">
@@ -507,7 +515,6 @@
           </div>
         </div>
       </div>
-      <a href="#results">Results</a>
       <div class="nav-item has-drop">
         <a href="#esg">Business &amp; ESG value</a>
         <div class="drop">
@@ -516,6 +523,8 @@
         </div>
       </div>
       <a href="#testimonials">Testimonials</a>
+      <a href="#faq">FAQ</a>
+      <a href="#company">Company</a>
     </nav>
     <div class="nav-right">
       <div class="lang-drop"><button class="lang-btn" aria-haspopup="true">🌐 EN <span class="lang-caret">▾</span></button><div class="lang-menu"><a href="?lang=en" class="active">English</a><a href="?lang=af">Afrikaans</a><a href="?lang=da">Dansk</a><a href="?lang=de">Deutsch</a><a href="?lang=es">Español</a><a href="?lang=hi">हिन्दी</a><a href="?lang=ja">日本語</a></div></div>
@@ -983,6 +992,25 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeVid();}
 </script>
 
 <!-- ===================== RISK-FREE PILOT (merged) ===================== -->
+<!-- ===================== FAQ ===================== -->
+<section class="section" id="faq" style="background:var(--paper-2)">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions operators ask</h2>
+      <p>Straight answers on how NanoEFX is applied, where it works, and how the risk-free pilot works.</p>
+    </div>
+    <div class="faq-list">
+      <details><summary>Does NanoEFX require any engine modification?</summary><div class="faq-a">No. It is applied to your existing air filter &mdash; no hardware, no ECU changes, no mechanical work, and no downtime.</div></details>
+      <details><summary>How is it applied, and how long does it take?</summary><div class="faq-a">Your own team sprays it onto the air filter. Typically 20&ndash;45 minutes depending on the vehicle or engine. Let it dry for at least 20 minutes, refit the filter, and run the engine.</div></details>
+      <details><summary>How often does it need to be reapplied?</summary><div class="faq-a">For cars, trucks and buses, roughly every 5,000&ndash;12,000&nbsp;km. For ships and generators it depends on run-hours and size, so it is calculated per asset.</div></details>
+      <details><summary>Which engines and fuels does it work with?</summary><div class="faq-a">Diesel, petrol, LPG, CNG/LNG, biogas, biodiesel, hybrid ICE, 2- and 4-stroke, turbocharged or naturally aspirated &mdash; anywhere there is treatable intake filtration (paper, PET, felt, washable or acoustic media).</div></details>
+      <details><summary>Is it safe and compliant?</summary><div class="faq-a">Yes &mdash; REACH compliant and water-based, and backed by &euro;5M product-liability insurance with zero claims since 2014.</div></details>
+      <details><summary>What happens if it does not save fuel?</summary><div class="faq-a">The pilot is risk-free: you measure against your own baseline and pay only if it proves fuel savings.</div></details>
+    </div>
+  </div>
+</section>
+
 <section class="section pilot" id="pilot">
   <div class="container">
     <div class="sec-head">
@@ -1027,7 +1055,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeVid();}
 </section>
 
 <!-- ===================== FOOTER ===================== -->
-<footer>
+<footer id="company">
   <div class="container">
     <div class="foot-grid">
       <div class="foot-brand">
