@@ -520,11 +520,11 @@
   .rmodal iframe{width:100%;height:100%;border:0;display:block}
   .rmodal-close{position:absolute;top:10px;right:12px;z-index:2;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.5);color:#fff;border:0;font-size:20px;line-height:1;cursor:pointer}
   .rmodal-close:hover{background:rgba(0,0,0,.72)}
-  .hero-vids{display:flex;flex-wrap:wrap;gap:22px;margin-top:14px}
-  .hero-vids a{display:inline-flex;align-items:center;gap:8px;color:#e6f0ea;font-size:14px;font-weight:600;transition:color .15s}
-  .hero-vids a:hover{color:var(--green-2)}
-  .hero-vids a svg{color:var(--green-2);flex:0 0 auto}
-  .hero-vids a span{color:var(--t-light-mut);font-size:12.5px;font-weight:500}
+  .hero-vids{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
+  .hero-vids .btn svg{color:var(--green-2);flex:0 0 auto}
+  .hero-vids .btn:hover svg{color:var(--green-2)}
+  .hero-vids .vdur{color:var(--t-light-mut);font-size:13px;font-weight:600;margin-left:1px}
+  @media (max-height:850px) and (min-width:900px){.hero-vids .btn{padding:11px 20px;font-size:15px}}
   .proof{background:var(--paper-2);border-bottom:1px solid var(--line-l)}
   .proof-in{padding:26px 0 30px}
   .proof-cap{display:block;text-align:center;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--t-dark-mut);margin-bottom:16px}
@@ -613,7 +613,7 @@
           <a class="btn btn-green btn-lg" href="#pilot">Book a risk-free pilot</a>
           <a class="btn btn-ghost btn-lg" href="#roi">Calculate your ROI <span class="arrow">→</span></a>
         </div>
-        <div class="hero-vids"><a href="javascript:void(0)" onclick="openHeroVid('#vidTeaser')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Watch the teaser <span>2:19</span></a><a href="javascript:void(0)" onclick="openHeroVid('#vidDeep')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Deep dive <span>7:23</span></a></div>
+        <div class="hero-vids"><a class="btn btn-ghost btn-lg" href="javascript:void(0)" onclick="openHeroVid('#vidTeaser')"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Watch the NanoEFX Intro <span class="vdur">2:19</span></a><a class="btn btn-ghost btn-lg" href="javascript:void(0)" onclick="openHeroVid('#vidDeep')"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Watch the NanoEFX Deep Dive <span class="vdur">7:23</span></a></div>
         <div class="hero-assure"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg>Pay only if the pilot proves fuel savings</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>Backed by <b>&#8364;5M</b> product-liability insurance · zero claims since 2014</span></div>
       </div>
       <div class="hero-visual" id="heroVisual"></div>
