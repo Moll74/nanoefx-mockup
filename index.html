@@ -119,12 +119,21 @@
   .hero-slogan{margin:12px 0 0;font-size:clamp(18px,2.2vw,25px);font-weight:600;line-height:1.32;color:#d6d2c8;max-width:54ch}
   .hero .sub{margin:18px 0 22px;font-size:19px;line-height:1.6;color:#cdddd6;max-width:52ch}
   .hero .sub b{color:#fff;font-weight:700}
+  .hero-example{margin:16px 0 0;font-size:14.5px;line-height:1.55;color:#b9c7c1;max-width:62ch}
+  .hero-example b{color:#fff;font-weight:700}
+  .calc-link{position:relative;color:var(--green-2);font-weight:700;text-decoration:none;white-space:nowrap;cursor:pointer;border-bottom:1px dashed rgba(140,213,90,.55)}
+  .calc-link:hover{color:#fff;border-bottom-color:rgba(255,255,255,.7)}
+  .calc-link .arrow{transition:transform .15s}
+  .calc-link:hover .arrow{transform:translateX(2px)}
+  .calc-tip{position:absolute;left:0;top:calc(100% + 10px);width:min(430px,78vw);background:#0b2e34;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:12px 14px;font-size:13px;font-weight:500;line-height:1.55;color:#dfe7e3;white-space:normal;box-shadow:0 18px 46px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;z-index:30;pointer-events:none}
+  .calc-link:hover .calc-tip{opacity:1;visibility:visible;transform:translateY(0)}
   @media(min-width:1200px){.hero .sub b{white-space:nowrap}}
   .hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
   @media (min-width:1600px){
     .hero-in{gap:56px;padding:clamp(22px,3vh,44px) clamp(40px,7vw,180px) clamp(16px,2vh,32px);align-items:stretch}
     .hero .hero-in>div:first-child{display:block}
     .hero .hero-in .sub b{display:inline-block;margin-top:20px}
+    .hero .hero-in .hero-example{font-size:16px;margin-top:20px}
     .hero .hero-in h1{font-size:clamp(30px,3.7vw,74px);line-height:1.04}
     .hero .hero-in .hero-slogan{font-size:clamp(24px,1.55vw,31px);margin-top:38px;max-width:62ch}
     .hero .hero-in .sub{font-size:22px;line-height:1.55;margin:38px 0 34px;max-width:56ch}
@@ -822,7 +831,8 @@
       <div>
         <div class="hero-lead"><h1>Reduce fleet fuel consumption by <span class="g">5&nbsp;to&nbsp;15%</span></h1>
         <p class="hero-slogan">The fuel you don’t burn is Scope 1 you never emit</p>
-        <p class="sub">A patented nano-coating for the air filters you already have. Savings measured brim-to-brim at the pump, not estimated from telematics. Engine safety verified by independent teardown.<br><b>No hardware. No downtime. Nothing enters the fuel or the engine.</b></p></div>
+        <p class="sub">A patented nano-coating for the air filters you already have. Savings measured brim-to-brim at the pump, not estimated from telematics. Engine safety verified by independent teardown.<br><b>No hardware. No downtime. Nothing enters the fuel or the engine.</b></p>
+        <p class="hero-example">Example: one truck, 1,000&nbsp;km a week. <b>&euro;2,600 less diesel a year</b> at a 10% reduction. Treatment costs about &euro;750. <a class="calc-link" href="#roi" onclick="openRoi();return false;">Run your own numbers <span class="arrow">&rarr;</span><span class="calc-tip">52,000&nbsp;km at 25&nbsp;L/100&nbsp;km = 13,000&nbsp;L. 10% = 1,300&nbsp;L at &euro;2.00 = &euro;2,600. 52,000 &divide; 7,000 = 7.4 applications &times; &euro;100 = &euro;740.</span></a></p></div>
         <div class="hero-mid">
         <div class="hero-cta">
           <a class="btn btn-green btn-lg" href="#pilot">Book a risk-free pilot</a>
@@ -1253,7 +1263,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHeroVid
       &quot;name&quot;: &quot;How is the EU ETS carbon saving calculated?&quot;,
       &quot;acceptedAnswer&quot;: {
         &quot;@type&quot;: &quot;Answer&quot;,
-        &quot;text&quot;: &quot;CO₂ avoided (tonnes) = litres saved × the fuel's CO₂ emission factor (2.68 kg/L for diesel, 2.31 kg/L for petrol) ÷ 1000. EU ETS cost avoided = CO₂ avoided × the EU ETS price per tonne. From 2027 road transport fuels are covered by EU ETS2, so this carbon cost applies to fleets.&quot;
+        &quot;text&quot;: &quot;CO₂ avoided (tonnes) = litres saved × the fuel's CO₂ emission factor (2.68 kg/L for diesel, 2.31 kg/L for petrol) ÷ 1000. EU ETS cost avoided = CO₂ avoided × the EU ETS price per tonne. This carbon cost is counted as a euro saving only for fleets directly liable under EU ETS — today, marine / shipping, which surrender allowances themselves. For road, rail and power-generation fleets the avoided CO₂ is a Scope 1 reporting output, not an additional cash saving.&quot;
       }
     },
     {
@@ -1261,7 +1271,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHeroVid
       &quot;name&quot;: &quot;What is the total annual saving?&quot;,
       &quot;acceptedAnswer&quot;: {
         &quot;@type&quot;: &quot;Answer&quot;,
-        &quot;text&quot;: &quot;Total annual saving = fuel cost saved + EU ETS carbon cost avoided, for the whole fleet, per year.&quot;
+        &quot;text&quot;: &quot;Total annual saving = fuel cost saved for the whole fleet, per year. For marine / shipping fleets, who are directly liable under EU ETS, the avoided EU ETS carbon cost is added on top. For road, rail and power fleets the avoided CO₂ is reported in tonnes as a Scope 1 output but is not added to the euro total.&quot;
       }
     }
   ]
@@ -1527,6 +1537,19 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHeroVid
       </div>
 
       <div class=&quot;field&quot;>
+        <label for=&quot;sector&quot;>Fleet type <span class=&quot;hint&quot;>— sets EU ETS liability</span></label>
+        <div class=&quot;control&quot;>
+          <select id=&quot;sector&quot;>
+            <option value=&quot;road&quot; selected>Road transport</option>
+            <option value=&quot;rail&quot;>Rail</option>
+            <option value=&quot;power&quot;>Power generation / generators</option>
+            <option value=&quot;marine&quot;>Marine / shipping</option>
+          </select>
+        </div>
+        <p class=&quot;field-note&quot; id=&quot;sectorNote&quot;>Road, rail and power fleets are not directly liable under EU ETS — avoided CO₂ is a Scope 1 reporting output, not a cash saving. Marine operators surrender EU ETS allowances themselves, so avoided carbon is a real euro saving and is added to the total.</p>
+      </div>
+
+      <div class=&quot;field&quot;>
         <label for=&quot;fuelPrice&quot;>Fuel price <span class=&quot;hint&quot;>(per litre)</span></label>
         <div class=&quot;control&quot;>
           <span class=&quot;prefix&quot;>€</span>
@@ -1536,7 +1559,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHeroVid
         <p class=&quot;field-note&quot;>Enter today's pump price for your country — European diesel currently sits around €2.00/L.</p>
       </div>
 
-      <div class=&quot;field&quot;>
+      <div class=&quot;field&quot; id=&quot;etsField&quot; style=&quot;display:none&quot;>
         <label for=&quot;etsPrice&quot;>EU ETS carbon price <span class=&quot;hint&quot;>(per tonne CO₂)</span></label>
         <div class=&quot;control&quot;>
           <span class=&quot;prefix&quot;>€</span>
@@ -1569,8 +1592,9 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHeroVid
         <div class=&quot;row&quot;><span class=&quot;lab&quot;>Total fuel used by fleet</span><span class=&quot;val&quot; id=&quot;totalFuelOut&quot;>0 L</span></div>
         <div class=&quot;row&quot;><span class=&quot;lab&quot;>Fuel saved per year</span><span class=&quot;val&quot; id=&quot;litresSavedOut&quot;>0 L</span></div>
         <div class=&quot;row sub&quot;><span class=&quot;lab&quot;>→ Fuel cost saved</span><span class=&quot;val&quot; id=&quot;fuelSaveOut&quot;>€0</span></div>
-        <div class=&quot;row&quot;><span class=&quot;lab&quot;>CO₂ emissions avoided</span><span class=&quot;val&quot; id=&quot;co2Out&quot;>0 t</span></div>
-        <div class=&quot;row sub&quot;><span class=&quot;lab&quot;>→ EU ETS cost avoided</span><span class=&quot;val&quot; id=&quot;etsSaveOut&quot;>€0</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab&quot;>CO₂ emissions avoided <span class=&quot;hint&quot;>(Scope 1)</span></span><span class=&quot;val&quot; id=&quot;co2Out&quot;>0 t</span></div>
+        <div class=&quot;row sub&quot; id=&quot;etsRow&quot; style=&quot;display:none&quot;><span class=&quot;lab&quot;>→ EU ETS cost avoided <span class=&quot;hint&quot;>(allowances surrendered)</span></span><span class=&quot;val&quot; id=&quot;etsSaveOut&quot;>€0</span></div>
+        <p class=&quot;field-note&quot; id=&quot;co2Note&quot; style=&quot;margin:-4px 0 4px&quot;>Scope 1 reduction — a reporting &amp;amp; ESG asset, <strong>not</strong> an additional cash saving for this fleet type.</p>
         <div class=&quot;row total&quot;><span class=&quot;lab&quot;>Total annual saving</span><span class=&quot;val&quot; id=&quot;totalOut2&quot;>€0</span></div>
       </div>
 
@@ -1607,10 +1631,10 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHeroVid
           <li><strong>Litres saved</strong> = total annual fuel × reduction %.</li>
           <li><strong>Fuel cost saved</strong> = litres saved × fuel price per litre.</li>
           <li><strong>CO₂ avoided</strong> = litres saved × emission factor ÷ 1000 → tonnes. Factors: diesel <code>2.68 kg/L</code>, petrol <code>2.31 kg/L</code> (standard tank-to-wheel combustion factors).</li>
-          <li><strong>EU ETS cost avoided</strong> = CO₂ avoided (t) × EU ETS price (€/t).</li>
-          <li><strong>Total annual saving</strong> = fuel cost saved + EU ETS cost avoided.</li>
+          <li><strong>EU ETS cost avoided</strong> = CO₂ avoided (t) × EU ETS price (€/t) — added to the total <strong>only for marine / shipping fleets</strong>, who surrender EU ETS allowances directly.</li>
+          <li><strong>Total annual saving</strong> = fuel cost saved <em>(+ EU ETS cost avoided for marine fleets only)</em>.</li>
         </ul>
-        <p>Road-transport fuels enter the EU emissions-trading system via <strong>EU ETS2 from 2027</strong>, which puts a direct carbon price on diesel and petrol used by fleets — so the carbon-cost line becomes a real, avoidable operating expense. Set the EU ETS price to the figure relevant to your market and year.</p>
+        <p>Only operators <strong>directly liable</strong> under EU ETS — today, maritime shipping — can bank the avoided carbon cost as cash. For road, rail and power-generation fleets the CO₂ you avoid is a genuine <strong>Scope 1 reduction</strong> — a real reporting and ESG asset — but not a second stream of euros, so this tool counts it in the total <strong>only when you select a marine fleet</strong>. The avoided tonnes are always shown for your Scope 1 report.</p>
       </div>
     </details>
 
@@ -1626,13 +1650,15 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHeroVid
   var num0 = new Intl.NumberFormat('en-IE',{maximumFractionDigits:0});
   var num1 = new Intl.NumberFormat('en-IE',{maximumFractionDigits:1});
 
-  var ids = ['fleet','perVehicle','fuelType','fuelPrice','etsPrice','reductionRange'];
+  var ids = ['fleet','perVehicle','fuelType','sector','fuelPrice','etsPrice','reductionRange'];
   function val(id){ return parseFloat($(id).value); }
 
   function calc(){
     var fleet   = Math.max(0, val('fleet')||0);
     var perVeh  = Math.max(0, val('perVehicle')||0);
     var ef      = parseFloat($('fuelType').value) || 0;
+    var sector  = $('sector').value;
+    var etsLiable = (sector === 'marine');
     var price   = Math.max(0, val('fuelPrice')||0);
     var ets     = Math.max(0, val('etsPrice')||0);
     var red     = Math.min(40, Math.max(0, val('reductionRange')||0)) / 100;
@@ -1642,8 +1668,14 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHeroVid
     var fuelSaved   = litresSaved * price;
     var co2Tonnes   = litresSaved * ef / 1000;
     var etsSaved    = co2Tonnes * ets;
-    var total       = fuelSaved + etsSaved;
+    var etsCounted  = etsLiable ? etsSaved : 0;   // only marine is directly ETS-liable
+    var total       = fuelSaved + etsCounted;
     var perVehSave  = fleet > 0 ? total / fleet : 0;
+
+    // show the ETS price input + euro line only when the fleet is directly liable
+    $('etsField').style.display = etsLiable ? '' : 'none';
+    $('etsRow').style.display   = etsLiable ? '' : 'none';
+    $('co2Note').style.display  = etsLiable ? 'none' : '';
 
     $('reductionOut').textContent = Math.round(red*100);
     $('reductionRange').style.setProperty('--pct', ((red*100 - 1) / (40 - 1) * 100) + '%');
@@ -1659,7 +1691,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHeroVid
     $('fiveYearOut').textContent    = eur0.format(total*5);
     $('co2FiveOut').textContent     = num0.format(co2Tonnes*5) + ' t';
 
-    window.__lastSummary = {fleet:fleet,perVeh:perVeh,red:Math.round(red*100),price:price,ets:ets,total:total,fuelSaved:fuelSaved,etsSaved:etsSaved,co2:co2Tonnes};
+    window.__lastSummary = {fleet:fleet,perVeh:perVeh,red:Math.round(red*100),price:price,ets:ets,sector:sector,etsLiable:etsLiable,total:total,fuelSaved:fuelSaved,etsSaved:etsSaved,co2:co2Tonnes};
   }
 
   ids.forEach(function(id){ var e=$(id); e.addEventListener('input',calc); e.addEventListener('change',calc); });
@@ -1670,10 +1702,12 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeHeroVid
       '-----------------------------------\n' +
       'Fleet: ' + num0.format(s.fleet) + ' vehicles × ' + num0.format(s.perVeh) + ' L/yr\n' +
       'Fuel reduction: ' + s.red + '%\n' +
-      'Fuel price: ' + eur2.format(s.price) + '/L   ·   EU ETS: ' + eur0.format(s.ets) + '/t\n' +
+      'Fuel price: ' + eur2.format(s.price) + '/L' + (s.etsLiable ? '   ·   EU ETS: ' + eur0.format(s.ets) + '/t' : '') + '\n' +
       'Fuel cost saved:  ' + eur0.format(s.fuelSaved) + '/yr\n' +
-      'EU ETS avoided:   ' + eur0.format(s.etsSaved) + '/yr\n' +
-      'CO₂ avoided:      ' + num1.format(s.co2) + ' t/yr\n' +
+      (s.etsLiable
+        ? 'EU ETS avoided:   ' + eur0.format(s.etsSaved) + '/yr  (marine — directly liable)\n'
+        : '') +
+      'CO₂ avoided:      ' + num1.format(s.co2) + ' t/yr' + (s.etsLiable ? '' : '  (Scope 1 — reporting output, not counted in €)') + '\n' +
       'TOTAL SAVING:     ' + eur0.format(s.total) + '/yr';
   }
 
