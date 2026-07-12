@@ -116,7 +116,7 @@
   @media (max-height:850px) and (min-width:900px){.hero-in{padding-top:clamp(14px,2vh,26px);padding-bottom:clamp(14px,2vh,26px)}.hero .hero-in h1{font-size:clamp(30px,3.4vw,46px)}.hero .hero-in .sub{font-size:17px;margin:14px 0 20px}.hero .hero-in .hero-slogan{font-size:clamp(16px,1.9vw,21px);margin-top:9px}.ribbon-in{padding-top:14px;padding-bottom:14px}}
   .hero h1{font-size:clamp(32px,5.2vw,60px);font-weight:800;line-height:1.04;color:#fff}
   .hero h1 .g{color:var(--green-2)}
-  .hero-slogan{margin:12px 0 0;font-size:clamp(18px,2.2vw,25px);font-weight:600;line-height:1.32;color:#a9d3b7;max-width:54ch}
+  .hero-slogan{margin:12px 0 0;font-size:clamp(18px,2.2vw,25px);font-weight:600;line-height:1.32;color:#d6d2c8;max-width:54ch}
   .hero .sub{margin:18px 0 22px;font-size:19px;line-height:1.6;color:#cdddd6;max-width:52ch}
   .hero .sub b{color:#fff;font-weight:700}
   .hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
@@ -586,6 +586,8 @@
   .hero-proof{display:inline-flex;align-items:center;flex-wrap:wrap;gap:16px;margin:18px 0 0 -16px;background:rgba(3,26,32,.4);border-radius:8px;padding:10px 16px}
   .hero-proof .hp{display:flex;align-items:center;gap:10px;text-decoration:none}
   .hero-proof .hp:hover .hp-txt b{text-decoration:underline;text-underline-offset:2px}
+  .hero-proof .hp::after{content:"\2192";margin-left:9px;color:var(--t-light-mut);font-weight:800;font-size:15px;flex:0 0 auto;transition:.15s}
+  .hero-proof .hp:hover::after{color:#fff;transform:translateX(2px)}
   .hp-div{width:1px;align-self:stretch;min-height:26px;background:rgba(255,255,255,.15);flex:0 0 auto}
   .hp-logo{background:#fff;border-radius:6px;padding:5px 8px;display:flex;align-items:center;flex:0 0 auto}
   .hp-logo img{height:20px;width:auto;display:block}
@@ -666,7 +668,7 @@
       <div>
         <h1>Reduce fleet fuel consumption by <span class="g">5&nbsp;to&nbsp;15%</span>.</h1>
         <p class="hero-slogan">The fuel you don’t burn is Scope 1 you never emit.</p>
-        <p class="sub">A patented nano-coating for the air filters you already have. Savings measured brim-to-brim at the pump, not estimated from telematics. Engine safety verified by independent teardown.<br><b>No hardware. No downtime. No engine modifications.<br>Nothing enters the fuel or the engine.</b></p>
+        <p class="sub">A patented nano-coating for the air filters you already have. Savings measured brim-to-brim at the pump, not estimated from telematics. Engine safety verified by independent teardown.<br><b>No hardware. No downtime. Nothing enters the fuel or the engine.</b></p>
         <div class="hero-cta">
           <a class="btn btn-green btn-lg" href="#pilot">Book a risk-free pilot</a>
           <a class="btn btn-ghost btn-lg" href="#roi">Calculate your ROI <span class="arrow">→</span></a>
