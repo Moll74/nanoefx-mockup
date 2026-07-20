@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fleet Fuel &amp; EU ETS Savings Calculator | NanoEFX</title>
+<meta name="description" content="Free interactive calculator: enter your fleet size, annual fuel use and the EU ETS carbon price to see how much NanoEFX fuel reduction saves you in euros — fuel cost plus avoided EU ETS carbon cost, per year." />
+<link rel="canonical" href="https://www.nanoefx.com/tools/roi-calculator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Fleet Fuel &amp; EU ETS Savings Calculator" />
+<meta property="og:description" content="See your annual euro savings from reduced fuel consumption and avoided EU ETS carbon cost. Adjustable from 1% to 40% fuel reduction." />
+<meta property="og:url" content="https://www.nanoefx.com/tools/roi-calculator" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "NanoEFX Fleet Fuel & EU ETS Savings Calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web browser",
+  "url": "https://www.nanoefx.com/tools/roi-calculator",
+  "description": "Interactive ROI calculator that turns fleet size, annual fuel consumption and the EU ETS carbon price into annual euro savings from reduced fuel use and avoided carbon cost.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "provider": { "@type": "Organization", "name": "NanoEFX", "url": "https://www.nanoefx.com" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is the fleet fuel saving calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Total annual fuel = fleet size × average annual fuel per vehicle. Litres saved = total annual fuel × fuel-reduction %. Fuel cost saved = litres saved × fuel price per litre."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the EU ETS carbon saving calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CO₂ avoided (tonnes) = litres saved × the fuel's CO₂ emission factor (2.68 kg/L for diesel, 2.31 kg/L for petrol) ÷ 1000. EU ETS cost avoided = CO₂ avoided × the EU ETS price per tonne. This carbon cost is counted as a euro saving only for fleets directly liable under EU ETS — today, marine / shipping, which surrender allowances themselves. For road, rail and power-generation fleets the avoided CO₂ is a Scope 1 reporting output, not an additional cash saving."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the total annual saving?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Total annual saving = fuel cost saved for the whole fleet, per year. For marine / shipping fleets, who are directly liable under EU ETS, the avoided EU ETS carbon cost is added on top. For road, rail and power fleets the avoided CO₂ is reported in tonnes as a Scope 1 output but is not added to the euro total."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --bg:#f1f5f5;
+    --panel:#ffffff;
+    --ink:#12262a;
+    --muted:#5a6d71;
+    --line:#e0e9ea;
+    --brand:#2f7d8a;
+    --brand-strong:#1f5c67;
+    --brand-soft:#e4f0f1;
+    --accent:#2a8f86;
+    --logo:#3f6d77;
+    --cta:#22626e;
+    --cta-strong:#184b55;
+    --cta-from:#1f5c67;
+    --cta-to:#2f8f86;
+    --genie-from:#2a7a86;
+    --genie-to:#123f52;
+    --cta-shadow:rgba(31,92,103,.28);
+    --shadow:0 1px 2px rgba(16,40,44,.06),0 10px 30px rgba(16,40,44,.08);
+    --radius:16px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0b1315;--panel:#101c1f;--ink:#e8f1f2;--muted:#9fb4b7;--line:#1f2e31;
+      --brand:#43b0bf;--brand-strong:#5cc6d1;--brand-soft:#122428;--accent:#4fc2b3;
+      --logo:#8fbfc7;--cta:#1f7168;--cta-strong:#2a8a80;--cta-from:#14454e;--cta-to:#1f7f76;
+      --genie-from:#1c5560;--genie-to:#0e3444;--cta-shadow:rgba(0,0,0,.45);
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0b1315;--panel:#101c1f;--ink:#e8f1f2;--muted:#9fb4b7;--line:#1f2e31;
+    --brand:#43b0bf;--brand-strong:#5cc6d1;--brand-soft:#122428;--accent:#4fc2b3;
+    --logo:#8fbfc7;--cta:#1f7168;--cta-strong:#2a8a80;--cta-from:#14454e;--cta-to:#1f7f76;
+    --genie-from:#1c5560;--genie-to:#0e3444;--cta-shadow:rgba(0,0,0,.45);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+  }
+  :root[data-theme="light"]{
+    --bg:#f1f5f5;--panel:#ffffff;--ink:#12262a;--muted:#5a6d71;--line:#e0e9ea;
+    --brand:#2f7d8a;--brand-strong:#1f5c67;--brand-soft:#e4f0f1;--accent:#2a8f86;
+    --logo:#3f6d77;--cta:#22626e;--cta-strong:#184b55;--cta-from:#1f5c67;--cta-to:#2f8f86;
+    --genie-from:#2a7a86;--genie-to:#123f52;--cta-shadow:rgba(31,92,103,.28);
+    --shadow:0 1px 2px rgba(16,40,44,.06),0 10px 30px rgba(16,40,44,.08);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:32px 20px 64px}
+
+  header.hero{margin-bottom:24px}
+  .brand-logo{display:inline-block;color:var(--logo);height:38px;margin-bottom:16px}
+  .brand-logo svg{height:100%;width:auto;display:block}
+  .brand-logo:focus-visible{outline:2px solid var(--brand);outline-offset:4px;border-radius:6px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--brand-strong);background:var(--brand-soft);
+    padding:6px 12px;border-radius:999px;
+  }
+  h1{font-size:clamp(26px,4vw,40px);line-height:1.1;margin:16px 0 8px;letter-spacing:-.02em;text-wrap:balance}
+  .sub{color:var(--muted);font-size:clamp(15px,2vw,18px);max-width:60ch;margin:0}
+
+  .grid{display:grid;grid-template-columns:1fr;gap:20px}
+  @media(min-width:860px){.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px;
+  }
+  .card h2{margin:0 0 4px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .card .lead{margin:0 0 20px;font-size:13px;color:var(--muted)}
+
+  .field{margin-bottom:18px}
+  .field:last-child{margin-bottom:0}
+  label{display:block;font-weight:600;margin-bottom:6px;font-size:14px}
+  .hint{font-weight:400;color:var(--muted);font-size:12px}
+  .field-note{margin:6px 0 0;font-size:12px;color:var(--muted);line-height:1.5}
+  .control{position:relative;display:flex;align-items:center}
+  .control .unit{position:absolute;right:14px;color:var(--muted);font-size:14px;pointer-events:none}
+  .control .prefix{position:absolute;left:14px;color:var(--muted);font-size:15px;pointer-events:none;font-weight:600}
+  input[type=number],select{
+    width:100%;padding:12px 44px 12px 14px;font-size:16px;color:var(--ink);
+    background:var(--bg);border:1px solid var(--line);border-radius:10px;
+    appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s;
+  }
+  input.has-prefix{padding-left:30px}
+  select{
+    padding-right:38px;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%237f9296' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;
+  }
+  input:focus,select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  input[type=number]{-moz-appearance:textfield}
+
+  .reduction-value{font-variant-numeric:tabular-nums;font-weight:800;color:var(--brand-strong);font-size:20px}
+  input[type=range]{
+    width:100%;appearance:none;-webkit-appearance:none;height:6px;border-radius:999px;
+    background:linear-gradient(90deg,var(--brand) 0%,var(--brand) var(--pct,20%),var(--line) var(--pct,20%));
+    margin:10px 0 4px;cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:999px;background:transparent;border:none}
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;margin-top:-8px;width:22px;height:22px;border-radius:50%;background:var(--brand);
+    border:3px solid var(--panel);box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:pointer;
+  }
+  input[type=range]::-moz-range-track{height:6px;border-radius:999px;background:transparent;border:none}
+  input[type=range]::-moz-range-thumb{
+    width:22px;height:22px;border-radius:50%;background:var(--brand);
+    border:3px solid var(--panel);box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:pointer;
+  }
+  input[type=range]:focus-visible{outline:2px solid var(--brand);outline-offset:4px}
+  .range-scale{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}
+
+  .result-hero{
+    background:linear-gradient(135deg,var(--cta-from),var(--cta-to));
+    color:#fff;border-radius:14px;padding:22px 24px;margin-bottom:18px;
+  }
+  .result-hero .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.9;font-weight:700}
+  .result-hero .v{font-size:clamp(30px,6vw,46px);font-weight:800;letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+  .result-hero .per{opacity:.92;font-size:14px;margin-top:6px}
+
+  .rows{display:grid;gap:2px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:13px 16px;background:var(--panel)}
+  .row .lab{color:var(--muted);font-size:14px}
+  .row .val{font-weight:700;font-variant-numeric:tabular-nums}
+  .row.sub .lab{padding-left:14px;font-size:13px}
+  .row.total{background:var(--brand-soft)}
+  .row.total .lab{color:var(--ink);font-weight:700}
+  .row.total .val{color:var(--brand-strong);font-size:18px}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+  .stat{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .stat .k{font-size:12px;color:var(--muted)}
+  .stat .v{font-size:20px;font-weight:800;margin-top:2px;font-variant-numeric:tabular-nums}
+
+  .foot{margin-top:28px}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px 18px;margin-top:12px}
+  summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";float:right;color:var(--muted);font-weight:400;font-size:20px;line-height:1}
+  details[open] summary::after{content:"\2013"}
+  details .body{padding-bottom:16px;color:var(--muted);font-size:14px}
+  details .body ul{margin:8px 0;padding-left:20px}
+  details .body code{background:var(--bg);padding:2px 6px;border-radius:6px;font-size:13px}
+
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+  @media(max-width:400px){.actions{grid-template-columns:1fr}}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    padding:11px 14px;border-radius:10px;text-align:center;
+    font-weight:600;font-size:14px;cursor:pointer;text-decoration:none;transition:.15s;
+  }
+  .btn:hover{border-color:var(--brand)}
+  .btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+  .btn.primary{background:var(--cta);border-color:var(--cta);color:#fff}
+  .btn.primary:hover{background:var(--cta-strong);border-color:var(--cta-strong)}
+  .btn.btn-genie{
+    background:linear-gradient(135deg,var(--genie-from),var(--genie-to));
+    border-color:transparent;color:#fff;
+  }
+  .btn.btn-genie:hover{filter:brightness(1.08);border-color:transparent}
+  .btn.btn-pilot{
+    display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;
+    margin:18px 0 0;padding:14px 18px;border:0;border-radius:12px;color:#fff;
+    background:linear-gradient(135deg,var(--cta-from),var(--cta-to));
+    box-shadow:0 6px 18px var(--cta-shadow);text-align:center;
+  }
+  .btn.btn-pilot:hover{filter:brightness(1.06)}
+  .btn.btn-pilot .pilot-main{font-size:16px;font-weight:800;letter-spacing:.01em}
+  .btn.btn-pilot .pilot-sub{
+    font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.92;
+  }
+
+  #copyBox{margin-top:12px}
+  #copyArea{
+    width:100%;height:150px;resize:vertical;padding:12px 14px;border-radius:10px;
+    border:1px solid var(--line);background:var(--bg);color:var(--ink);
+    font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  #copyArea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  .copy-hint{margin:8px 0 0;font-size:12px;color:var(--muted)}
+  .copy-hint kbd{
+    background:var(--panel);border:1px solid var(--line);border-radius:5px;
+    padding:1px 6px;font:600 11px/1 ui-monospace,Menlo,monospace;color:var(--ink);
+  }
+
+  .disclaimer{color:var(--muted);font-size:12px;margin-top:20px;line-height:1.6}
+  .theme-toggle{position:fixed;top:16px;right:16px;z-index:5}
+  .theme-toggle button{background:var(--panel);border:1px solid var(--line);border-radius:999px;width:38px;height:38px;cursor:pointer;font-size:16px;color:var(--ink)}
+  .theme-toggle button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="theme-toggle"><button id="themeBtn" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button></div>
+<div class="wrap">
+
+  <header class="hero">
+    <a class="brand-logo" href="https://www.nanoefx.com" target="_blank" rel="noopener" aria-label="NanoEFX — home">
+      <svg viewBox="0 0 300 64" role="img" aria-label="NanoEFX">
+        <g stroke="currentColor" stroke-width="6" stroke-linecap="round">
+          <line x1="12" y1="40" x2="34" y2="40"/>
+          <line x1="34" y1="40" x2="30" y2="16"/>
+          <line x1="34" y1="40" x2="58" y2="20"/>
+          <line x1="34" y1="40" x2="56" y2="46"/>
+        </g>
+        <g fill="currentColor">
+          <circle cx="12" cy="40" r="6"/>
+          <circle cx="34" cy="40" r="12"/>
+          <circle cx="30" cy="16" r="9"/>
+          <circle cx="58" cy="20" r="12"/>
+          <circle cx="56" cy="46" r="8"/>
+        </g>
+        <text x="88" y="47" font-family="'Arial Rounded MT Bold','Avenir Next',Verdana,sans-serif" font-size="34" font-weight="700" letter-spacing="3" fill="currentColor">NANOEFX</text>
+      </svg>
+    </a>
+    <div><span class="eyebrow">Fleet Fuel &amp; Carbon ROI Tool</span></div>
+    <h1>Fleet Fuel &amp; EU ETS Savings Calculator</h1>
+    <p class="sub">Enter your fleet size, annual fuel use and the current EU ETS carbon price. See what a fuel-consumption reduction is worth to you — in fuel cost <em>and</em> avoided carbon cost — every year, in euros.</p>
+  </header>
+
+  <div class="grid">
+    <section class="card" aria-label="Inputs">
+      <h2>Your fleet</h2>
+      <p class="lead">Adjust any value — results update instantly.</p>
+
+      <div class="field">
+        <label for="fleet">Fleet size <span class="hint">(number of vehicles)</span></label>
+        <div class="control">
+          <input id="fleet" type="number" min="1" step="1" value="50" inputmode="numeric" />
+          <span class="unit">vehicles</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="perVehicle">Average annual fuel per vehicle <span class="hint">(litres / year)</span></label>
+        <div class="control">
+          <input id="perVehicle" type="number" min="0" step="100" value="30000" inputmode="numeric" />
+          <span class="unit">L / yr</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="fuelType">Fuel type</label>
+        <div class="control">
+          <select id="fuelType">
+            <option value="2.68" selected>Diesel — 2.68 kg CO₂ / L</option>
+            <option value="2.31">Petrol / gasoline — 2.31 kg CO₂ / L</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="sector">Fleet type <span class="hint">— sets EU ETS liability</span></label>
+        <div class="control">
+          <select id="sector">
+            <option value="road" selected>Road transport</option>
+            <option value="rail">Rail</option>
+            <option value="power">Power generation / generators</option>
+            <option value="marine">Marine / shipping</option>
+          </select>
+        </div>
+        <p class="field-note" id="sectorNote">Road, rail and power fleets are not directly liable under EU ETS — avoided CO₂ is a Scope 1 reporting output, not a cash saving. Marine operators surrender EU ETS allowances themselves, so avoided carbon is a real euro saving and is added to the total.</p>
+      </div>
+
+      <div class="field">
+        <label for="fuelPrice">Fuel price <span class="hint">(per litre)</span></label>
+        <div class="control">
+          <span class="prefix">€</span>
+          <input id="fuelPrice" class="has-prefix" type="number" min="0" step="0.01" value="2.00" inputmode="decimal" />
+          <span class="unit">/ L</span>
+        </div>
+        <p class="field-note">Enter today's pump price for your country — European diesel currently sits around €2.00/L.</p>
+      </div>
+
+      <div class="field" id="etsField" style="display:none">
+        <label for="etsPrice">EU ETS carbon price <span class="hint">(per tonne CO₂)</span></label>
+        <div class="control">
+          <span class="prefix">€</span>
+          <input id="etsPrice" class="has-prefix" type="number" min="0" step="1" value="80" inputmode="decimal" />
+          <span class="unit">/ t</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="reductionRange">Fuel consumption reduction <span class="hint">— NanoEFX effect</span></label>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:2px">
+          <input id="reductionRange" type="range" min="1" max="40" step="1" value="8" />
+          <span class="reduction-value"><span id="reductionOut">8</span>%</span>
+        </div>
+        <div class="range-scale"><span>1%</span><span>20%</span><span>40%</span></div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Results">
+      <h2>Your annual savings</h2>
+      <p class="lead">Whole fleet, per year, at the reduction shown.</p>
+
+      <div class="result-hero">
+        <div class="k">Total annual saving</div>
+        <div class="v" id="totalOut">€0</div>
+        <div class="per" id="perVehicleOut">€0 per vehicle / year</div>
+      </div>
+
+      <div class="rows">
+        <div class="row"><span class="lab">Total fuel used by fleet</span><span class="val" id="totalFuelOut">0 L</span></div>
+        <div class="row"><span class="lab">Fuel saved per year</span><span class="val" id="litresSavedOut">0 L</span></div>
+        <div class="row sub"><span class="lab">→ Fuel cost saved</span><span class="val" id="fuelSaveOut">€0</span></div>
+        <div class="row"><span class="lab">CO₂ emissions avoided <span class="hint">(Scope 1)</span></span><span class="val" id="co2Out">0 t</span></div>
+        <div class="row sub" id="etsRow" style="display:none"><span class="lab">→ EU ETS cost avoided <span class="hint">(allowances surrendered)</span></span><span class="val" id="etsSaveOut">€0</span></div>
+        <p class="field-note" id="co2Note" style="margin:-4px 0 4px">Scope 1 reduction — a reporting &amp; ESG asset, <strong>not</strong> an additional cash saving for this fleet type.</p>
+        <div class="row total"><span class="lab">Total annual saving</span><span class="val" id="totalOut2">€0</span></div>
+      </div>
+
+      <div class="split">
+        <div class="stat"><div class="k">5-year saving</div><div class="v" id="fiveYearOut">€0</div></div>
+        <div class="stat"><div class="k">CO₂ avoided / 5 yr</div><div class="v" id="co2FiveOut">0 t</div></div>
+      </div>
+
+      <a class="btn btn-pilot" href="https://www.nanoefx.com/contact" target="_blank" rel="noopener">
+        <span class="pilot-main">Start a risk-free pilot</span>
+        <span class="pilot-sub">No cure — no pay</span>
+      </a>
+      <div class="actions">
+        <button class="btn primary" id="copyBtn" type="button">Get your report</button>
+        <a class="btn btn-genie" href="https://chatgpt.com/g/g-6846f42cfc008191b6ec7d53eb8d8e00-nanoefx-ai-genie" target="_blank" rel="noopener">✨ Chat with AI NanoEFX Genie</a>
+        <a class="btn" href="https://www.nanoefx.com/contact" target="_blank" rel="noopener">Contact NanoEFX</a>
+        <a class="btn" href="https://www.nanoefx.com/case-studies" target="_blank" rel="noopener">📊 Case studies</a>
+        <a class="btn" href="https://www.nanoefx.com/technology" target="_blank" rel="noopener">▶ Video explainer</a>
+        <a class="btn" href="https://www.nanoefx.com/blog" target="_blank" rel="noopener">📝 Blog</a>
+      </div>
+      <div id="copyBox" hidden>
+        <textarea id="copyArea" readonly aria-label="Your ROI report text"></textarea>
+        <p class="copy-hint">Your report — select all and press <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>C</kbd> to copy.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="foot">
+    <details>
+      <summary>How this is calculated (method &amp; assumptions)</summary>
+      <div class="body">
+        <ul>
+          <li><strong>Total annual fuel</strong> = fleet size × average annual fuel per vehicle.</li>
+          <li><strong>Litres saved</strong> = total annual fuel × reduction %.</li>
+          <li><strong>Fuel cost saved</strong> = litres saved × fuel price per litre.</li>
+          <li><strong>CO₂ avoided</strong> = litres saved × emission factor ÷ 1000 → tonnes. Factors: diesel <code>2.68 kg/L</code>, petrol <code>2.31 kg/L</code> (standard tank-to-wheel combustion factors).</li>
+          <li><strong>EU ETS cost avoided</strong> = CO₂ avoided (t) × EU ETS price (€/t) — added to the total <strong>only for marine / shipping fleets</strong>, who surrender EU ETS allowances directly.</li>
+          <li><strong>Total annual saving</strong> = fuel cost saved <em>(+ EU ETS cost avoided for marine fleets only)</em>.</li>
+        </ul>
+        <p>Only operators <strong>directly liable</strong> under EU ETS — today, maritime shipping — can bank the avoided carbon cost as cash. For road, rail and power-generation fleets the CO₂ you avoid is a genuine <strong>Scope 1 reduction</strong> — a real reporting and ESG asset — but not a second stream of euros, so this tool counts it in the total <strong>only when you select a marine fleet</strong>. The avoided tonnes are always shown for your Scope 1 report.</p>
+      </div>
+    </details>
+
+    <p class="disclaimer">Indicative estimate for planning purposes only. Actual savings depend on duty cycle, vehicle mix, baseline fuel consumption, verified reduction achieved, fuel and carbon prices, and applicable regulation. Figures are not a guarantee. Emission factors are standard combustion (tank-to-wheel) values; use your own certified factors where required. © NanoEFX.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var eur0 = new Intl.NumberFormat('en-IE',{style:'currency',currency:'EUR',maximumFractionDigits:0});
+  var eur2 = new Intl.NumberFormat('en-IE',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2});
+  var num0 = new Intl.NumberFormat('en-IE',{maximumFractionDigits:0});
+  var num1 = new Intl.NumberFormat('en-IE',{maximumFractionDigits:1});
+
+  var ids = ['fleet','perVehicle','fuelType','sector','fuelPrice','etsPrice','reductionRange'];
+  function val(id){ return parseFloat($(id).value); }
+
+  function calc(){
+    var fleet   = Math.max(0, val('fleet')||0);
+    var perVeh  = Math.max(0, val('perVehicle')||0);
+    var ef      = parseFloat($('fuelType').value) || 0;
+    var sector  = $('sector').value;
+    var etsLiable = (sector === 'marine');
+    var price   = Math.max(0, val('fuelPrice')||0);
+    var ets     = Math.max(0, val('etsPrice')||0);
+    var red     = Math.min(40, Math.max(0, val('reductionRange')||0)) / 100;
+
+    var totalFuel   = fleet * perVeh;
+    var litresSaved = totalFuel * red;
+    var fuelSaved   = litresSaved * price;
+    var co2Tonnes   = litresSaved * ef / 1000;
+    var etsSaved    = co2Tonnes * ets;
+    var etsCounted  = etsLiable ? etsSaved : 0;   // only marine is directly ETS-liable
+    var total       = fuelSaved + etsCounted;
+    var perVehSave  = fleet > 0 ? total / fleet : 0;
+
+    // show the ETS price input + euro line only when the fleet is directly liable
+    $('etsField').style.display = etsLiable ? '' : 'none';
+    $('etsRow').style.display   = etsLiable ? '' : 'none';
+    $('co2Note').style.display  = etsLiable ? 'none' : '';
+
+    $('reductionOut').textContent = Math.round(red*100);
+    $('reductionRange').style.setProperty('--pct', ((red*100 - 1) / (40 - 1) * 100) + '%');
+
+    $('totalFuelOut').textContent   = num0.format(totalFuel) + ' L';
+    $('litresSavedOut').textContent = num0.format(litresSaved) + ' L';
+    $('fuelSaveOut').textContent    = eur0.format(fuelSaved);
+    $('co2Out').textContent         = num1.format(co2Tonnes) + ' t';
+    $('etsSaveOut').textContent     = eur0.format(etsSaved);
+    $('totalOut').textContent       = eur0.format(total);
+    $('totalOut2').textContent      = eur0.format(total);
+    $('perVehicleOut').textContent  = eur0.format(perVehSave) + ' per vehicle / year';
+    $('fiveYearOut').textContent    = eur0.format(total*5);
+    $('co2FiveOut').textContent     = num0.format(co2Tonnes*5) + ' t';
+
+    window.__lastSummary = {fleet:fleet,perVeh:perVeh,red:Math.round(red*100),price:price,ets:ets,sector:sector,etsLiable:etsLiable,total:total,fuelSaved:fuelSaved,etsSaved:etsSaved,co2:co2Tonnes};
+  }
+
+  ids.forEach(function(id){ var e=$(id); e.addEventListener('input',calc); e.addEventListener('change',calc); });
+
+  function buildSummary(){
+    var s = window.__lastSummary || {};
+    return 'NanoEFX Fleet ROI — annual savings\n' +
+      '-----------------------------------\n' +
+      'Fleet: ' + num0.format(s.fleet) + ' vehicles × ' + num0.format(s.perVeh) + ' L/yr\n' +
+      'Fuel reduction: ' + s.red + '%\n' +
+      'Fuel price: ' + eur2.format(s.price) + '/L' + (s.etsLiable ? '   ·   EU ETS: ' + eur0.format(s.ets) + '/t' : '') + '\n' +
+      'Fuel cost saved:  ' + eur0.format(s.fuelSaved) + '/yr\n' +
+      (s.etsLiable
+        ? 'EU ETS avoided:   ' + eur0.format(s.etsSaved) + '/yr  (marine — directly liable)\n'
+        : '') +
+      'CO₂ avoided:      ' + num1.format(s.co2) + ' t/yr' + (s.etsLiable ? '' : '  (Scope 1 — reporting output, not counted in €)') + '\n' +
+      'TOTAL SAVING:     ' + eur0.format(s.total) + '/yr';
+  }
+
+  $('copyBtn').addEventListener('click', function(){
+    var txt = buildSummary();
+    var btn = $('copyBtn'), old = 'Get your report';
+    function flash(msg){ btn.textContent = msg; setTimeout(function(){ btn.textContent = old; }, 1800); }
+
+    var box = $('copyBox'), area = $('copyArea');
+    area.value = txt;
+    box.hidden = false;
+    area.focus(); area.select();
+    try{ area.setSelectionRange(0, txt.length); }catch(e){}
+
+    function tryExec(){
+      try{ return document.execCommand('copy'); }catch(e){ return false; }
+    }
+
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(
+        function(){ box.hidden = true; flash('Report copied ✓'); },
+        function(){ if(tryExec()){ box.hidden = true; flash('Report copied ✓'); } else { flash('Select + Ctrl/⌘C ↓'); } }
+      );
+    } else if(tryExec()){
+      box.hidden = true; flash('Report copied ✓');
+    } else {
+      flash('Select + Ctrl/⌘C ↓');
+    }
+  });
+
+  $('themeBtn').addEventListener('click', function(){
+    var root=document.documentElement, cur=root.getAttribute('data-theme');
+    var next = cur==='dark' ? 'light' : (cur==='light' ? 'dark' : (matchMedia('(prefers-color-scheme: dark)').matches ? 'light':'dark'));
+    root.setAttribute('data-theme', next);
+  });
+
+  calc();
+})();
+</script>
+</body>
+</html>
